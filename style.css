@@ -1,0 +1,85 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #ff3e00;
+    text-shadow: 0 0 10px rgba(255, 62, 0, 0.8), 0 0 20px rgba(255, 62, 0, 0.6);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+input[type="password"] {
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 16px;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+input[type="password"]::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #ff3e00, #ff61a6);
+    color: white;
+    cursor: pointer;
+    transition: background 0.5s;
+    animation: glow 1.2s infinite;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #ff61a6, #ff3e00);
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+    }
+}
+
+.love-puzzle {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.love-puzzle img {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.love-puzzle img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.6);
+}
