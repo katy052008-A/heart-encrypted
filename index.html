@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Secure Access</title>
+<style>
+body {
+    margin: 0;
+    background: black;
+    color: #00ffe1;
+    font-family: 'Courier New', monospace;
+    text-align: center;
+    overflow: hidden;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.container {
+    margin-top: 15%;
+}
+
+input {
+    background: black;
+    border: 1px solid #ff00ff;
+    color: #ff00ff;
+    padding: 10px;
+    text-align: center;
+}
+
+button {
+    background: black;
+    border: 1px solid #00ffe1;
+    color: #00ffe1;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.glow {
+    font-size: 30px;
+    text-shadow: 0 0 10px #00ffe1, 0 0 20px #ff00ff;
+}
+
+.fade {
+    animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="container" id="login">
+    <h1>SECURE TERMINAL</h1>
+    <p>Enter Access Key</p>
+    <input type="password" id="password" placeholder="••••••">
+    <br>
+    <button onclick="checkPassword()">ENTER</button>
+    <p id="error"></p>
+</div>
+
+<div class="container hidden" id="secret">
+    <h1 class="glow fade">ACCESS GRANTED</h1>
+    <p class="fade">Welcome, [SU NOMBRE]</p>
+    <p class="fade">You didn't hack my system.</p>
+    <p class="fade">You became my safe place.</p>
+    <p class="fade">Connection status: Permanent.</p>
+    <p class="fade">Heart encryption: Only you.</p>
+</div>
+
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/a
 
