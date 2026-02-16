@@ -3,92 +3,693 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyberpunk Design</title>
+    <title>❤️ ENCRYPTED HEART ❤️</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background-color: black;
-            color: white;
-            font-family: 'Courier New', Courier, monospace;
+            background: #000000;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ===== ESCENA 1: LOGIN ===== */
+        .scene-1 {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .scene-1.hidden {
+            display: none;
+        }
+
+        /* Frases flotantes */
+        .floating-text {
+            position: absolute;
+            font-size: 24px;
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000;
+            animation: float 6s infinite;
+            letter-spacing: 2px;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        /* Corazones y estrellas flotantes */
+        .floating-heart, .floating-star {
+            position: absolute;
+            font-size: 40px;
+            animation: float 8s infinite;
+            opacity: 0.6;
+        }
+
+        .floating-heart {
+            color: #ff1493;
+            text-shadow: 0 0 15px #ff1493;
+        }
+
+        .floating-star {
+            color: #ffff00;
+            text-shadow: 0 0 15px #ffff00;
+        }
+
+        /* Glitch effect para elementos flotantes */
+        .glitch-float {
+            animation: glitch-float 0.3s infinite;
+        }
+
+        @keyframes glitch-float {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(-2px, -2px);
+            }
+            50% {
+                transform: translate(2px, 2px);
+            }
+            75% {
+                transform: translate(-2px, 2px);
+            }
+        }
+
+        /* Contenedor de login */
+        .login-container {
             text-align: center;
+            z-index: 20;
+            position: relative;
+        }
+
+        .login-container h1 {
+            font-size: 56px;
+            color: #ff0000;
+            text-shadow: 0 0 5px #ff0000;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        .login-container p {
+            font-size: 20px;
+            color: #ffffff;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .password-input {
+            padding: 15px 25px;
+            font-size: 18px;
+            background: #000000;
+            border: 3px solid #ffffff;
+            color: #ffffff;
+            text-align: center;
+            letter-spacing: 2px;
+            width: 300px;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .password-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .enter-button {
+            padding: 15px 40px;
+            font-size: 18px;
+            background: #ffffff;
+            border: 3px solid #ffffff;
+            color: #000000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 2px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .enter-button:hover {
+            background: #00ffff;
+            border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+            transform: scale(1.05);
+        }
+
+        .enter-button:active {
+            transform: scale(0.98);
+        }
+
+        /* ===== ESCENA 2: HACKER SCREEN ===== */
+        .scene-2 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 30;
+        }
+
+        .scene-2.active {
+            display: flex;
+        }
+
+        .scene-2.hidden {
+            display: none;
+        }
+
+        /* Fondo hacker animado */
+        .hacker-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
             overflow: hidden;
+            opacity: 0.8;
+            z-index: 1;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.4;
+            padding: 20px;
+            box-sizing: border-box;
         }
-        .neon {
-            text-shadow: 
-                0 0 5px blue, 
-                0 0 10px blue,
-                0 0 15px yellow, 
-                0 0 20px pink, 
-                0 0 30px pink,
-                0 0 40px lightblue;
-            font-size: 3rem;
+
+        .hacker-code {
+            animation: codeScroll 0.1s linear infinite;
         }
-        .matrix {
-            color: green;
-            font-family: 'Courier New', Courier, monospace;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: text-animation 1s steps(20, end) infinite;
+
+        @keyframes codeScroll {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(20px);
+            }
         }
-        @keyframes text-animation {
-            0% { width: 0; }
-            25% { width: 100%; }
-            50% { width: 0; }
-            100% { width: 0; }
+
+        /* Elementos gráficos hacker */
+        .hacker-circle {
+            position: absolute;
+            border: 2px solid #00ff00;
+            border-radius: 50%;
+            color: #00ff00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            animation: rotate 3s linear infinite;
+            text-shadow: 0 0 10px #00ff00;
+            z-index: 5;
         }
-        .glitch {
-            animation: glitch 1s infinite;
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
-        @keyframes glitch {
-            0% { text-shadow: 2px 0 red; }
-            20% { text-shadow: -2px 0 blue; }
-            40% { text-shadow: 2px 0 red; }
-            60% { text-shadow: -2px 0 blue; }
-            80% { text-shadow: 2px 0 red; }
-            100% { text-shadow: -2px 0 blue; }
+
+        .hacker-bar {
+            position: absolute;
+            background: #00ff00;
+            animation: barPulse 1s ease-in-out infinite;
+            z-index: 5;
         }
+
+        @keyframes barPulse {
+            0%, 100% {
+                height: 20px;
+            }
+            50% {
+                height: 80px;
+            }
+        }
+
+        .hacker-box {
+            position: absolute;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            padding: 10px;
+            font-size: 12px;
+            text-shadow: 0 0 10px #00ff00;
+            background: rgba(0, 255, 0, 0.05);
+            z-index: 5;
+        }
+
+        /* ERROR y WARNING */
+        .error-warning {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .error-text {
+            font-size: 48px;
+            color: #ff0000;
+            text-shadow: 0 0 20px #ff0000;
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+            font-weight: bold;
+            animation: glitch-error 0.4s infinite;
+        }
+
+        @keyframes glitch-error {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(-3px, -3px);
+            }
+            50% {
+                transform: translate(3px, 3px);
+            }
+            75% {
+                transform: translate(-3px, 3px);
+            }
+        }
+
+        .warning-text {
+            font-size: 28px;
+            color: #ffff00;
+            text-shadow: 0 0 20px #ffff00;
+            letter-spacing: 2px;
+            animation: warningFlash 0.5s ease-in-out infinite;
+            font-weight: bold;
+        }
+
+        @keyframes warningFlash {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* ===== ESCENA 3: CORAZÓN EXPLOTA ===== */
+        .scene-3 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 40;
+        }
+
+        .scene-3.active {
+            display: flex;
+        }
+
+        .heart-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            animation: growHeart 3s ease-in-out forwards;
+        }
+
+        @keyframes growHeart {
+            0% {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: scale(150);
+                opacity: 0;
+            }
+        }
+
+        .heart {
+            width: 100%;
+            height: 100%;
+            color: #ff0000;
+            text-shadow: 0 0 20px #ff0000;
+            font-size: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 10px #ff0000);
+        }
+
+        .access-granted {
+            position: absolute;
+            font-size: 48px;
+            color: #00ff00;
+            text-shadow: 0 0 20px #00ff00;
+            letter-spacing: 3px;
+            font-weight: bold;
+            opacity: 0;
+            animation: accessReveal 1s ease-out 3.2s forwards;
+            z-index: 50;
+        }
+
+        @keyframes accessReveal {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
         .hidden {
             display: none;
         }
-        .button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background: blue;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 1.5rem;
+
+        @media (max-width: 768px) {
+            .login-container h1 {
+                font-size: 36px;
+            }
+
+            .password-input {
+                width: 80vw;
+                max-width: 250px;
+            }
+
+            .floating-text {
+                font-size: 16px;
+            }
+
+            .error-text {
+                font-size: 32px;
+            }
+
+            .warning-text {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1 class="neon">Welcome to the Cyberpunk Realm</h1>
-    <div id="password-section">
-        <input type="password" id="password" placeholder="Enter Password" />
-        <button class="button" onclick="verifyPassword()">Submit</button>
-        <div id="error-message" class="hidden glitch">Warning! One more chance before system gets hacked!</div>
+    <!-- ESCENA 1: LOGIN -->
+    <div class="scene-1" id="scene1">
+        <div id="floatingElements"></div>
+        
+        <div class="login-container">
+            <h1>welcome to my encrypted heart</h1>
+            <p>enter the password to unlock my heart</p>
+            <div class="input-group">
+                <input 
+                    type="password" 
+                    id="passwordInput" 
+                    class="password-input" 
+                    placeholder="••••••••"
+                    autocomplete="off"
+                >
+                <button class="enter-button" onclick="verifyPassword()">ENTER</button>
+            </div>
+        </div>
     </div>
-    <div class="matrix hidden" id="matrix-animation">Incorrect Password</div>
+
+    <!-- ESCENA 2: HACKER SCREEN -->
+    <div class="scene-2" id="scene2">
+        <div class="hacker-background" id="hackerBg"></div>
+        <div class="error-warning">
+            <div class="error-text">ERROR</div>
+            <div class="warning-text">WARNING: ONE OPPORTUNITY LEFT</div>
+        </div>
+    </div>
+
+    <!-- ESCENA 3: CORAZÓN EXPLOTA -->
+    <div class="scene-3" id="scene3">
+        <div class="heart-container">
+            <div class="heart">❤️</div>
+        </div>
+        <div class="access-granted">ACCESS GRANTED</div>
+    </div>
 
     <script>
-        let attempt = 0;
-        const correctPassword = "08142024"; // Set your correct password here
+        const CORRECT_PASSWORD = "08142024";
+        let attempts = 0;
+        const MAX_ATTEMPTS = 2;
 
+        // Frases para los elementos flotantes
+        const phrases = [
+            "you have the code of my heart",
+            "soul mates",
+            "i love you",
+            "do you love me",
+            "one heart",
+            "our anniversary",
+            "you are my light"
+        ];
+
+        // Inicializar elementos flotantes
+        function initFloatingElements() {
+            const container = document.getElementById('floatingElements');
+            container.innerHTML = '';
+
+            // Crear frases flotantes
+            for (let i = 0; i < 12; i++) {
+                const phrase = phrases[Math.floor(Math.random() * phrases.length)];
+                const floatingText = document.createElement('div');
+                floatingText.className = 'floating-text glitch-float';
+                floatingText.textContent = phrase;
+                floatingText.style.left = Math.random() * 100 + '%';
+                floatingText.style.top = Math.random() * 100 + '%';
+                floatingText.style.animationDelay = Math.random() * 6 + 's';
+                container.appendChild(floatingText);
+            }
+
+            // Crear corazones
+            for (let i = 0; i < 8; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart glitch-float';
+                heart.textContent = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 8 + 's';
+                container.appendChild(heart);
+            }
+
+            // Crear estrellas
+            for (let i = 0; i < 8; i++) {
+                const star = document.createElement('div');
+                star.className = 'floating-star glitch-float';
+                star.textContent = '⭐';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 8 + 's';
+                container.appendChild(star);
+            }
+        }
+
+        // Generar código hacker random
+        function generateHackerCode() {
+            const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+            const symbols = '!@#$%^&*()_+-={}[]|:;<>?,./';
+            const codeLines = [];
+
+            for (let i = 0; i < 25; i++) {
+                let line = '';
+                for (let j = 0; j < Math.random() * 80 + 40; j++) {
+                    line += (Math.random() > 0.7) ? symbols[Math.floor(Math.random() * symbols.length)] : chars[Math.floor(Math.random() * chars.length)];
+                }
+                codeLines.push(line);
+            }
+
+            return codeLines.join('\n');
+        }
+
+        // Mostrar pantalla hacker
+        function showHackerScreen() {
+            const scene1 = document.getElementById('scene1');
+            const scene2 = document.getElementById('scene2');
+            
+            scene1.classList.add('hidden');
+            scene2.classList.add('active');
+
+            // Generar código hacker
+            const hackerBg = document.getElementById('hackerBg');
+            hackerBg.textContent = generateHackerCode();
+
+            // Crear elementos gráficos hacker
+            createHackerElements();
+
+            // Después de 3.5 segundos, volver a la escena 1
+            setTimeout(() => {
+                scene2.classList.remove('active');
+                scene1.classList.remove('hidden');
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+            }, 3500);
+        }
+
+        // Crear elementos gráficos hacker
+        function createHackerElements() {
+            const scene2 = document.getElementById('scene2');
+            
+            // Limpiar elementos previos
+            const oldElements = scene2.querySelectorAll('.hacker-circle, .hacker-bar, .hacker-box');
+            oldElements.forEach(el => el.remove());
+
+            // Círculos con porcentajes
+            for (let i = 0; i < 4; i++) {
+                const circle = document.createElement('div');
+                circle.className = 'hacker-circle';
+                circle.style.width = (100 + i * 50) + 'px';
+                circle.style.height = (100 + i * 50) + 'px';
+                circle.style.top = (10 + i * 15) + '%';
+                circle.style.left = (10 + i * 15) + '%';
+                circle.textContent = Math.floor(Math.random() * 100) + '%';
+                circle.style.animationDelay = (i * 0.5) + 's';
+                scene2.appendChild(circle);
+            }
+
+            // Barras de código
+            for (let i = 0; i < 3; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'hacker-bar';
+                bar.style.width = '30px';
+                bar.style.left = (70 + i * 8) + '%';
+                bar.style.top = (50 + i * 10) + '%';
+                bar.style.animationDelay = (i * 0.3) + 's';
+                scene2.appendChild(bar);
+            }
+
+            // Cajas de código
+            for (let i = 0; i < 3; i++) {
+                const box = document.createElement('div');
+                box.className = 'hacker-box';
+                box.style.width = '120px';
+                box.style.height = '80px';
+                box.style.top = (20 + i * 25) + '%';
+                box.style.right = (5 + i * 15) + '%';
+                box.textContent = 'CODE_' + Math.random().toString(36).substring(7).toUpperCase();
+                scene2.appendChild(box);
+            }
+        }
+
+        // Verificar contraseña
         function verifyPassword() {
-            const input = document.getElementById('password').value;
-            if (input === correctPassword) {
-                alert("Access Granted");
-                // Redirect or perform success action here
+            const password = document.getElementById('passwordInput').value;
+
+            if (password === CORRECT_PASSWORD) {
+                attempts = 0;
+                showHeartExplosion();
             } else {
-                attempt++;
-                document.getElementById('matrix-animation').classList.remove('hidden');
-                if (attempt >= 3) {
-                    alert("System Hacked!");
-                    // Add hacking logic here
+                attempts++;
+                if (attempts < MAX_ATTEMPTS) {
+                    showHackerScreen();
                 } else {
-                    document.getElementById('error-message').classList.remove('hidden');
+                    // Última oportunidad fallida - mostrar hacker screen una última vez
+                    showHackerScreen();
+                    attempts = 0;
                 }
             }
         }
+
+        // Mostrar explosión de corazón
+        function showHeartExplosion() {
+            const scene1 = document.getElementById('scene1');
+            const scene3 = document.getElementById('scene3');
+
+            scene1.classList.add('hidden');
+            scene3.classList.add('active');
+
+            // Después de 4.5 segundos, continuar a la siguiente escena
+            setTimeout(() => {
+                console.log('Transición a escena 2 (love puzzle)');
+            }, 4500);
+        }
+
+        // Permitir Enter para enviar contraseña
+        document.getElementById('passwordInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                verifyPassword();
+            }
+        });
+
+        // Inicializar al cargar
+        window.addEventListener('load', () => {
+            initFloatingElements();
+            document.getElementById('passwordInput').focus();
+        });
     </script>
 </body>
 </html>
