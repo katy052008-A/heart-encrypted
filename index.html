@@ -3,56 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyberpunk Love Page</title>
+    <title>Cyberpunk Design</title>
     <style>
         body {
-            background-color: #0f0f0f;
-            color: #00ffcc;
+            background-color: black;
+            color: white;
             font-family: 'Courier New', Courier, monospace;
             text-align: center;
-            padding: 50px;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            overflow: hidden;
         }
-        .password-input {
-            padding: 10px;
-            margin: 20px;
-            border: 2px solid #00ffcc;
-            background: #222;
-            color: #00ffcc;
-            font-size: 16px;
+        .neon {
+            text-shadow: 
+                0 0 5px blue, 
+                0 0 10px blue,
+                0 0 15px yellow, 
+                0 0 20px pink, 
+                0 0 30px pink,
+                0 0 40px lightblue;
+            font-size: 3rem;
         }
-        .verify-button {
-            padding: 10px 20px;
-            border: none;
-            background: #00ffcc;
-            color: #0f0f0f;
-            font-size: 16px;
-            cursor: pointer;
+        .matrix {
+            color: green;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: text-animation 1s steps(20, end) infinite;
+        }
+        @keyframes text-animation {
+            0% { width: 0; }
+            25% { width: 100%; }
+            50% { width: 0; }
+            100% { width: 0; }
+        }
+        .glitch {
+            animation: glitch 1s infinite;
+        }
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 red; }
+            20% { text-shadow: -2px 0 blue; }
+            40% { text-shadow: 2px 0 red; }
+            60% { text-shadow: -2px 0 blue; }
+            80% { text-shadow: 2px 0 red; }
+            100% { text-shadow: -2px 0 blue; }
         }
         .hidden {
             display: none;
         }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: blue;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome to the Cyberpunk Love Page</h1>
-    <input type="password" id="password" class="password-input" placeholder="Enter the password"/>
-    <button class="verify-button" onclick="verifyPassword()">Verify</button>
-    <div id="message" class="hidden">
-        <h2>Access Granted! You are a true cyberpunk lover!</h2>
+    <h1 class="neon">Welcome to the Cyberpunk Realm</h1>
+    <div id="password-section">
+        <input type="password" id="password" placeholder="Enter Password" />
+        <button class="button" onclick="verifyPassword()">Submit</button>
+        <div id="error-message" class="hidden glitch">Warning! One more chance before system gets hacked!</div>
     </div>
+    <div class="matrix hidden" id="matrix-animation">Incorrect Password</div>
 
     <script>
+        let attempt = 0;
+        const correctPassword = "SecurePassword123"; // Set your correct password here
+
         function verifyPassword() {
-            const password = document.getElementById('password').value;
-            const message = document.getElementById('message');
-            if (password === 'cyberlove123') { // Replace with your desired password
-                message.classList.remove('hidden');
+            const input = document.getElementById('password').value;
+            if (input === correctPassword) {
+                alert("Access Granted");
+                // Redirect or perform success action here
             } else {
-                alert('Incorrect Password!');
+                attempt++;
+                document.getElementById('matrix-animation').classList.remove('hidden');
+                if (attempt >= 3) {
+                    alert("System Hacked!");
+                    // Add hacking logic here
+                } else {
+                    document.getElementById('error-message').classList.remove('hidden');
+                }
             }
         }
     </script>
