@@ -3,28 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Heart Encrypted</title>
+    <title>Cyberpunk Love Page</title>
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: #00ffcc;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 50px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .password-input {
+            padding: 10px;
+            margin: 20px;
+            border: 2px solid #00ffcc;
+            background: #222;
+            color: #00ffcc;
+            font-size: 16px;
+        }
+        .verify-button {
+            padding: 10px 20px;
+            border: none;
+            background: #00ffcc;
+            color: #0f0f0f;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Heart Encrypted</h1>
-    </header>
-    <main>
-        <section id="password-entry">
-            <h2>Password Entry</h2>
-            <form>
-                <label for="password">Enter your password:</label>
-                <input type="password" id="password" name="password" required>
-                <button type="submit">Submit</button>
-            </form>
-        </section>
-        <section id="love-puzzle">
-            <h2>Love Puzzle</h2>
-            <p>Solve the puzzle to win a special prize!</p>
-            <!-- Add puzzle content here -->
-        </section>
-    </main>
-    <script src="script.js"></script>
+    <h1>Welcome to the Cyberpunk Love Page</h1>
+    <input type="password" id="password" class="password-input" placeholder="Enter the password"/>
+    <button class="verify-button" onclick="verifyPassword()">Verify</button>
+    <div id="message" class="hidden">
+        <h2>Access Granted! You are a true cyberpunk lover!</h2>
+    </div>
+
+    <script>
+        function verifyPassword() {
+            const password = document.getElementById('password').value;
+            const message = document.getElementById('message');
+            if (password === 'cyberlove123') { // Replace with your desired password
+                message.classList.remove('hidden');
+            } else {
+                alert('Incorrect Password!');
+            }
+        }
+    </script>
 </body>
 </html>
